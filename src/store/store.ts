@@ -1,4 +1,4 @@
-import {observable, computed, action} from "mobx";
+import {observable, computed, action, runInAction} from "mobx";
 
 export interface Name {
     title: string
@@ -10,7 +10,6 @@ export interface IStore {
     name: Name
     fullName: string
     getName(): void
-    setName(name: Name): void
 }
 
 class Store implements IStore {
@@ -28,11 +27,7 @@ class Store implements IStore {
     @action getName(): void {
         fetch('https://randomuser.me/api/')
             .then(res => res.json())
-            .then(json => this.setName(json.results[0].name))
-    }
-
-    @action setName(name: Name): void {
-        this.name = name
+            .then(json => runInAction(() => this.name = json.results[0].name))
     }
 }
 
