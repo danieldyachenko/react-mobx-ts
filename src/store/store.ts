@@ -7,18 +7,14 @@ export interface Name {
 }
 
 export interface IStore {
-    name: Name
+    name: Name | null
     fullName: string
     getName(): void
 }
 
 export class Store implements IStore {
 
-    @observable name: Name = {
-        title: '',
-        first: '',
-        last: ''
-    }
+    @observable name: Name | null = null
 
     @computed get fullName(): string {
         return `${this.name.title} ${this.name.first} ${this.name.last}`

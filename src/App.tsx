@@ -1,8 +1,8 @@
-import React, {Component, useContext, useEffect} from "react";
-import {observer} from "mobx-react";
+import React, {useContext, useEffect} from "react";
+import {useObserver} from "mobx-react";
 import StoreContext from "./store/storeContext"
 
-export default observer(() => {
+export default () => {
 
     const store = useContext(StoreContext);
 
@@ -10,10 +10,10 @@ export default observer(() => {
         store.getName()
     }, [])
 
-    return (
+    return useObserver(() => (
         <>
             <h2>{store.name ? store.fullName : 'Loading...'}</h2>
             <button onClick={() => store.getName()}>Get name</button>
         </>
-    )
-})
+    ))
+}
