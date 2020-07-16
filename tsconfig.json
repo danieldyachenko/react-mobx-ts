@@ -8,7 +8,9 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*"

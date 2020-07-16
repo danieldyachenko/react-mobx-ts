@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import App from "./App";
 import './index.css';
 import {configure} from "mobx";
-import store from "./store/store";
+import {store} from "./store/store";
+import StoreContext from "./store/storeContext"
 
 // Не допускать изменения состояния вне действий
 configure({enforceActions: "observed"})
-
-export const StoreContext = createContext(null)
 
 ReactDOM.render(
     <StrictMode>

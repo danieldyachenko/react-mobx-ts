@@ -1,9 +1,25 @@
-import {observable, computed, action, autorun, configure} from "mobx";
-import {Name} from "./types";
+import {observable, computed, action} from "mobx";
 
-class Store {
+export interface Name {
+    title: string
+    first: string
+    last: string
+}
 
-    @observable private name: Name | null = null
+export interface IStore {
+    name: Name
+    fullName: string
+    getName(): void
+    setName(name: Name): void
+}
+
+class Store implements IStore {
+
+    @observable name: Name = {
+        title: '',
+        first: '',
+        last: ''
+    }
 
     @computed get fullName(): string {
         return `${this.name.title} ${this.name.first} ${this.name.last}`
@@ -15,9 +31,9 @@ class Store {
             .then(json => this.setName(json.results[0].name))
     }
 
-    @action private setName(name: Name): void {
+    @action setName(name: Name): void {
         this.name = name
     }
 }
 
-export default new Store()
+export const store = new Store()
