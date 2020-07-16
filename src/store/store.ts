@@ -24,7 +24,7 @@ class Store implements IStore {
         return `${this.name.title} ${this.name.first} ${this.name.last}`
     }
 
-    getName = flow(function* () {
+    getName = flow(function* (this: Store) {
         try {
             const response  =  yield fetch('https://randomuser.me/api/')
             const json = yield response.json()
