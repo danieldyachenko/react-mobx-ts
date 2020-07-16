@@ -28,7 +28,7 @@ class Store implements IStore {
         try {
             const response  =  yield fetch('https://randomuser.me/api/')
             const json = yield response.json()
-            runInAction(() => this.name = json.results[0].name)
+            this.name = json.results[0].name
         } catch (err) {
             console.log(err)
         }
