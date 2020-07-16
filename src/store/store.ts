@@ -1,4 +1,4 @@
-import {observable, computed, action, runInAction} from "mobx";
+import {observable, computed, action, runInAction, flow} from "mobx";
 
 export interface Name {
     title: string
@@ -24,11 +24,15 @@ class Store implements IStore {
         return `${this.name.title} ${this.name.first} ${this.name.last}`
     }
 
-    @action getName(): void {
-        fetch('https://randomuser.me/api/')
-            .then(res => res.json())
-            .then(json => runInAction(() => this.name = json.results[0].name))
-    }
+    getName = flow(function* () {
+        try {
+            const response  =  yield fetch('https://randomuser.me/api/')
+            const json = yield response.json()
+            runInAction(() => this.name = json.results[0].name)
+        } catch (err) {
+            console.log(err)
+        }
+    })
 }
 
 export const store = new Store()
