@@ -1,4 +1,4 @@
 import {createContext} from "react";
-import {IStore, store} from "./store";
+import {IStore, Store} from "./store";
 
-export default createContext<IStore>(store)
+export default createContext<IStore>(new Store)

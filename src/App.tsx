@@ -1,21 +1,19 @@
-import React, {Component} from "react";
+import React, {Component, useContext, useEffect} from "react";
 import {observer} from "mobx-react";
 import StoreContext from "./store/storeContext"
 
-@observer export default class App extends Component {
+export default observer(() => {
 
-    static contextType = StoreContext;
+    const store = useContext(StoreContext);
 
-    componentDidMount() {
-        this.context.getName()
-    }
+    useEffect(() => {
+        store.getName()
+    }, [])
 
-    render() {
-        return (
-            <>
-                <h2>{this.context.name ? this.context.fullName : 'Loading...'}</h2>
-                <button onClick={() => this.context.getName()}>Get name</button>
-            </>
-        )
-    }
-}
+    return (
+        <>
+            <h2>{store.name ? store.fullName : 'Loading...'}</h2>
+            <button onClick={() => store.getName()}>Get name</button>
+        </>
+    )
+})

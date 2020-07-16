@@ -1,4 +1,4 @@
-import {observable, computed, action, runInAction, flow} from "mobx";
+import {observable, computed, flow} from "mobx";
 
 export interface Name {
     title: string
@@ -12,7 +12,7 @@ export interface IStore {
     getName(): void
 }
 
-class Store implements IStore {
+export class Store implements IStore {
 
     @observable name: Name = {
         title: '',
@@ -34,5 +34,3 @@ class Store implements IStore {
         }
     })
 }
-
-export const store = new Store()
