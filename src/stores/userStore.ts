@@ -1,4 +1,5 @@
 import {observable, computed, flow} from "mobx";
+import {RootStore} from "./rootStore";
 
 export interface Name {
     title: string
@@ -6,13 +7,19 @@ export interface Name {
     last: string
 }
 
-export interface IStore {
+export interface IUserStore {
     name: Name | null
     fullName: string
     getName(): void
 }
 
-export class Store implements IStore {
+export class UserStore implements IUserStore {
+
+    rootStore: RootStore;
+
+    constructor(rootStore: RootStore) {
+        this.rootStore = rootStore
+    }
 
     @observable name: Name | null = null
 
@@ -20,7 +27,7 @@ export class Store implements IStore {
         return `${this.name.title} ${this.name.first} ${this.name.last}`
     }
 
-    getName = flow(function* (this: Store) {
+    getName = flow(function* (this: UserStore) {
         try {
             const response  =  yield fetch('https://randomuser.me/api/')
             const json = yield response.json()
