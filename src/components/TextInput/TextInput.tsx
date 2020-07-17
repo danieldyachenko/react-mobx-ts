@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import StoreContext from "../../stores/storeContext"
 import {useObserver} from "mobx-react"
 
-const TextInput = () => {
+export default function TextInput() {
 
     const {textStore} = useContext(StoreContext);
 
@@ -17,5 +17,3 @@ const TextInput = () => {
         </div>
     ))
 }
-
-export default TextInput

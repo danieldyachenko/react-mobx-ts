@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import StoreContext from "../../stores/storeContext"
 import {useObserver} from "mobx-react"
 
-const Rundomuser = () => {
+export default function Rundomuser() {
 
     const {userStore} = useContext(StoreContext);
 
@@ -17,5 +17,3 @@ const Rundomuser = () => {
         </div>
     ))
 }
-
-export default Rundomuser
