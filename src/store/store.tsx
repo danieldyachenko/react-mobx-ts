@@ -1,21 +1,17 @@
-import React, {createContext} from "react";
+import React, {createContext, useContext} from "react";
 import {IRootStore, RootStore} from "./rootStore";
 import { useLocalStore } from 'mobx-react'
 
-export const storeContext = createContext<IRootStore>(null as IRootStore)
+const StoreContext = createContext<IRootStore>(null as IRootStore)
 
-export const StoreProvider = ({ children }: {children: JSX.Element}) => {
+export const StoreProvider = ({ children }: { children: JSX.Element }) => {
     const store = useLocalStore(() => ({...new RootStore()}))
-    return <storeContext.Provider value={store}>{children}</storeContext.Provider>
+    return (
+        <StoreContext.Provider value={store}>
+            {children}
+        </StoreContext.Provider>
+    )
 }
 
-export const useStore = () => {
+export const useStore = () => useContext(StoreContext)
 
-    const store = React.useContext(storeContext)
-
-    if (!store) {
-        throw new Error('useStore must be used within a StoreProvider.')
-    }
-
-    return store
-}
