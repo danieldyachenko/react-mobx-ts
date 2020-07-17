@@ -2,18 +2,20 @@ import React, {useContext, useEffect} from "react";
 import StoreContext from "../../stores/storeContext"
 import {useObserver} from "mobx-react"
 
-export default () => {
+const Rundomuser = () => {
 
-    const rootStore = useContext(StoreContext);
+    const {userStore} = useContext(StoreContext);
 
     useEffect(() => {
-        rootStore.userStore.getName()
+        userStore.getName()
     }, [])
 
     return useObserver(() => (
         <div>
-            <h2>{rootStore.userStore.name ? rootStore.userStore.fullName : 'Loading...'}</h2>
-            <button onClick={() => rootStore.userStore.getName()}>Get name</button>
+            <h2>{userStore.name ? userStore.fullName : 'Loading...'}</h2>
+            <button onClick={() => userStore.getName()}>Get name</button>
         </div>
     ))
 }
+
+export default Rundomuser
