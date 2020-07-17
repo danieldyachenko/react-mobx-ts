@@ -15,10 +15,10 @@ export interface IUserStore {
 
 export class UserStore implements IUserStore {
 
-    rootStore: RootStore;
+    private _rootStore: RootStore;
 
     constructor(rootStore: RootStore) {
-        this.rootStore = rootStore
+        this._rootStore = rootStore
     }
 
     @observable name: Name | null = null
