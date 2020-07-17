@@ -1,15 +1,13 @@
 import React from "react";
-import Rundomuser from "./components/Rundomuser/Rundomuser";
+import RandomUser from "./components/RandomUser/RandomUser";
 import TextInput from "./components/TextInput/TextInput"
 
-const App = () => {
+export default function() {
     return (
         <>
-            <Rundomuser/>
+            <RandomUser/>
             <TextInput/>
         </>
     )
 }
-
-export default App
 

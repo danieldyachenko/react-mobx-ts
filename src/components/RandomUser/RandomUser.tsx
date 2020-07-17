@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from "react";
-import StoreContext from "../../stores/storeContext"
+import React, {useEffect} from "react";
 import {useObserver} from "mobx-react"
+import {useStore} from "../../store/store";
 
-export default function Rundomuser() {
+export default function() {
 
-    const {userStore} = useContext(StoreContext);
+    const {userStore} = useStore();
 
     useEffect(() => {
         userStore.getName()

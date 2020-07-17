@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
-import StoreContext from "../../stores/storeContext"
+import React from "react";
 import {useObserver} from "mobx-react"
+import {useStore} from "../../store/store";
 
-export default function TextInput() {
+export default function() {
 
-    const {textStore} = useContext(StoreContext);
+    const {textStore} = useStore();
 
     return useObserver(() => (
         <div>
