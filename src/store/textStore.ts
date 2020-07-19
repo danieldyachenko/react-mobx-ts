@@ -8,7 +8,7 @@ export interface ITextStore {
 
 export class TextStore {
 
-    private _rootStore: RootStore;
+    _rootStore: RootStore;
 
     constructor(rootStore: RootStore) {
         this._rootStore = rootStore
