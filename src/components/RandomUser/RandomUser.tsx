@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useObserver} from "mobx-react"
 import {useStore} from "../../store/store";
 
-export default function() {
+export default () => {
 
     const {userStore} = useStore();
 
