@@ -1,23 +1,19 @@
-import {RootStore} from "./rootStore";
-import {action, observable} from "mobx";
-
-export interface ITextStore {
-    text: string
-    setText(text: string): void
-}
+import { RootStore } from './rootStore';
+import { makeAutoObservable } from 'mobx';
 
 export class TextStore {
 
-    _rootStore: RootStore;
-
-    constructor(rootStore: RootStore) {
-        this._rootStore = rootStore
+    constructor(public rootStore: RootStore) {
+        makeAutoObservable(this);
     }
 
-    @observable text: string = ''
+    text: string = '';
 
-    @action setText(text: string) {
-        this.text = text
+    setText(text: string) {
+        this.text = text;
     }
-
 }
+
+/* export const setText = action((state: ITextStore, newText: string) => {
+    state.text = newText
+}) */

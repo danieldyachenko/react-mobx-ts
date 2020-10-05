@@ -1,39 +1,32 @@
-import {observable, computed, flow} from "mobx";
+import {observable, computed, flow, makeObservable} from "mobx";
+import userService from "../services/userService";
 import {RootStore} from "./rootStore";
-
-export interface Name {
-    title: string
-    first: string
-    last: string
-}
-
-export interface IUserStore {
-    name: Name | null
-    fullName: string
-    getName(): void
-}
+import { IUserStore, Name } from "./types";
 
 export class UserStore implements IUserStore {
 
-    private _rootStore: RootStore;
-
-    constructor(rootStore: RootStore) {
-        this._rootStore = rootStore
+    constructor(public rootStore: RootStore) {
+        makeObservable(this, {
+            name: observable,
+            fullName: computed,
+            getName: flow
+        })
     }
 
-    @observable name: Name | null = null
+    name: Name | null = null
 
-    @computed get fullName(): string {
+    get fullName(): string {
         return `${this.name.title} ${this.name.first} ${this.name.last}`
     }
 
-    getName = flow(function* (this: UserStore) {
+    *getName() {
         try {
-            const response  =  yield fetch('https://randomuser.me/api/')
+            const response  =  yield userService.getName()
             const json = yield response.json()
             this.name = json.results[0].name
+            this.rootStore.textStore.text = this.fullName
         } catch (err) {
             console.log(err)
         }
-    })
+    }
 }

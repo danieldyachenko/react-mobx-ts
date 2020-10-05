@@ -1,6 +1,7 @@
 import React, {createContext, useContext} from "react";
-import {IRootStore, RootStore} from "./rootStore";
+import {RootStore} from "./rootStore";
 import { useLocalStore } from 'mobx-react'
+import { IRootStore } from "./types";
 
 const StoreContext = createContext<IRootStore>(null as IRootStore)
 
@@ -14,4 +15,5 @@ export const StoreProvider = ({ children }: { children: JSX.Element }) => {
 }
 
 export const useStore = () => useContext(StoreContext)
+
 

@@ -1,18 +1,16 @@
-import React, {StrictMode} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import App from "./App";
+import App from './App';
 import './index.css';
-import {configure} from "mobx";
+import { configure } from 'mobx';
 import 'mobx-react/batchingForReactDom';
-import {StoreProvider} from "./store/store";
+import { StoreProvider } from './store/store';
 
-configure({enforceActions: "observed"})
+configure({ enforceActions: 'observed' });
 
 ReactDOM.render(
-    <StrictMode>
-        <StoreProvider>
-            <App/>
-        </StoreProvider>
-    </StrictMode>,
-    document.getElementById("root")
+    <StoreProvider>
+        <App />
+    </StoreProvider>,
+    document.getElementById('root')
 );

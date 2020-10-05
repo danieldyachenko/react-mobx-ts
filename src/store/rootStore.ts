@@ -1,10 +1,6 @@
-import {IUserStore, UserStore} from "./userStore";
-import {ITextStore, TextStore} from "./textStore";
-
-export interface IRootStore {
-    userStore: IUserStore
-    textStore: ITextStore
-}
+import {UserStore} from "./userStore";
+import {TextStore} from "./textStore";
+import { IRootStore } from "./types";
 
 export class RootStore implements IRootStore {
 

@@ -1,19 +1,22 @@
 import React from "react";
-import {useObserver} from "mobx-react"
+import {observer} from "mobx-react"
 import {useStore} from "../../store/store";
 
-export default () => {
+const TextInput = observer(() => {
 
     const {textStore} = useStore();
 
-    return useObserver(() => (
+    return (
         <div>
             <input
                 type="text"
                 name="textInput"
+                value={textStore.text}
                 onChange={event => textStore.setText(event.target.value)}
             /><br/>
             <span>{textStore.text}</span>
         </div>
-    ))
-}
+    )
+})
+
+export default TextInput
