@@ -7,13 +7,11 @@ export class TextStore {
         makeAutoObservable(this);
     }
 
+    //observable
     text: string = '';
 
+    //action
     setText(text: string) {
         this.text = text;
     }
 }
-
-/* export const setText = action((state: ITextStore, newText: string) => {
-    state.text = newText
-}) */

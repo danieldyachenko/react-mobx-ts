@@ -11,7 +11,9 @@ export interface Name {
 
 export interface IUserStore {
     name: Name | null
+    status: Status
     fullName: string
+    error: string
     getName(): void
 }
 
@@ -19,3 +21,5 @@ export interface ITextStore {
     text: string;
     setText(text: string): void;
 }
+
+export type Status = 'pending' | 'done' | 'error';

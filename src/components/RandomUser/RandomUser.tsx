@@ -1,24 +1,28 @@
-import React, {useEffect} from "react";
-import {observer} from "mobx-react"
-import {useStore} from "../../store/store";
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react';
+import { useStore } from '../../store/store';
 
 const RandomUser = observer(() => {
-
-    const {userStore} = useStore();
-
-    console.log('RandomUser')
+    const { userStore } = useStore();
 
     useEffect(() => {
-        userStore.getName()
-        console.log('useEffect')
-    }, [userStore])
+        userStore.getName();
+    }, [userStore]);
 
     return (
         <div>
-            <h2>{userStore.name ? userStore.fullName : 'Loading...'}</h2>
-            <button onClick={() => userStore.getName()}>Get name</button>
+            <h3>
+                {userStore.status === 'pending'
+                    ? 'Loading...'
+                    : userStore.status === 'error'
+                    ? userStore.error
+                    : userStore.fullName}
+            </h3>
+            <p>
+                <button onClick={() => userStore.getName()}>Get name</button>
+            </p>
         </div>
-    )
-})
+    );
+});
 
-export default RandomUser
+export default RandomUser;
