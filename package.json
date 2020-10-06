@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --hot",
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "danieldyachenko",

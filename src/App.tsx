@@ -2,7 +2,7 @@ import React from "react";
 import RandomUser from "./components/RandomUser/RandomUser";
 import TextInput from "./components/TextInput/TextInput"
 
-export default () => {
+const App = () => {
     return (
         <>
             <RandomUser/>
@@ -10,4 +10,6 @@ export default () => {
         </>
     )
 }
+
+export default App
 
